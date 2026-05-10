@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VIGILANT | Product Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#0a0a0a",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.1rem", "lg": "0.25rem", "xl": "0.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .drippy-text {
+            text-shadow: 0 4px 0px #ec5b13;
+            position: relative;
+        }
+        .cyber-border {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-white/10 bg-background-dark/80 backdrop-blur-md px-6 md:px-20 py-4">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-2 group cursor-pointer" onclick="window.location.href='/'">
+<div class="text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined !text-4xl">terminal</span>
+</div>
+<h2 class="text-white text-2xl font-black leading-tight tracking-tighter italic uppercase">
+                            VIG<span class="text-primary">I</span>LANT
+                        </h2>
+</div>
+<nav class="hidden lg:flex items-center gap-10">
+<a class="text-white/70 hover:text-primary text-xs font-black uppercase tracking-widest transition-colors" href="/">System_Shop</a>
+<a class="text-white/70 hover:text-primary text-xs font-black uppercase tracking-widest transition-colors" href="#">Collections.zip</a>
+<a class="text-white/70 hover:text-primary text-xs font-black uppercase tracking-widest transition-colors" href="#">Hardware</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="flex gap-4">
+<a href="/cart" class="flex items-center justify-center rounded-none h-10 w-10 bg-white/5 border border-white/10 text-white hover:bg-primary hover:text-black transition-all">
+<span class="material-symbols-outlined">shopping_cart</span>
+</a>
+<a href="/login" class="flex items-center justify-center rounded-none h-10 w-10 bg-primary text-black hover:bg-white transition-all">
+<span class="material-symbols-outlined">person</span>
+</a>
+</div>
+</div>
+</header>
+
+<main class="flex-1">
+<!-- Product Details Section -->
+<div th:if="${item}" class="max-w-[1400px] mx-auto py-20 px-6 md:px-20">
+    <!-- Breadcrumbs -->
+    <div class="flex items-center gap-2 text-xs font-mono text-white/40 mb-10">
+        <a href="/" class="hover:text-primary">ROOT</a>
+        <span>/</span>
+        <a href="#" class="hover:text-primary" th:text="${item.category}">CATEGORY</a>
+        <span>/</span>
+        <span class="text-primary" th:text="${item.name}">ITEM_NAME</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <!-- Left: Image Display -->
+        <div class="relative aspect-[3/4] overflow-hidden bg-white/5 cyber-border group">
+            <!-- Dynamic Image -->
+            <img th:src="${item.imageUrl}"
+                 th:alt="${item.name}"
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+
+            <!-- Tech Overlay UI -->
+            <div class="absolute top-6 left-6 bg-black/80 backdrop-blur-sm border border-primary/30 px-4 py-2">
+                <p class="text-primary text-[10px] font-bold uppercase tracking-widest">Img_Render_Active</p>
+            </div>
+
+            <div class="absolute bottom-6 right-6 flex flex-col gap-2 items-end">
+                <div class="h-1 w-24 bg-white/20 overflow-hidden">
+                    <div class="h-full bg-primary w-2/3 animate-pulse"></div>
+                </div>
+                <p class="text-white/50 text-[10px] font-mono">ZOOM_LEVEL: 100%</p>
+            </div>
+        </div>
+
+        <!-- Right: Product Info -->
+        <div class="flex flex-col h-full justify-center">
+            <div class="mb-6">
+                <p class="text-primary text-xs font-black tracking-[0.5em] uppercase mb-2" th:text="'SKU: VGL-' + ${item.id}">SKU: VGL-000</p>
+                <h1 class="text-white text-5xl md:text-7xl font-black uppercase leading-[0.9] tracking-tighter mb-4 drippy-text" th:text="${item.name}">
+                    PRODUCT_NAME
+                </h1>
+                <div class="flex items-center gap-4">
+                    <p class="text-3xl text-white font-black" th:text="'₱' + ${item.price}">0.00</p>
+                    <span class="px-2 py-1 border border-white/20 text-white/40 text-[10px] font-bold uppercase tracking-widest">In_Stock</span>
+                </div>
+            </div>
+
+            <!-- Description (Static for now as text file doesn't have desc) -->
+            <div class="border-l-4 border-primary pl-6 mb-10">
+                <p class="text-white/70 text-lg leading-relaxed">
+                    Engineered for the urban vanguard. This tactical unit features high-grade material composition and ICT-inspired geometry. Designed for durability in the Caloocan sector.
+                </p>
+            </div>
+
+            <!-- Specs / Sizes -->
+            <div class="grid grid-cols-2 gap-8 mb-12">
+                <div>
+                    <p class="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-3">Category_Class</p>
+                    <p class="text-white font-mono text-sm" th:text="${item.category}">Unknown</p>
+                </div>
+                <div>
+                    <p class="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-3">Available_Sizes</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <!-- We split the string "S, M, L" just to display it -->
+                        <span class="text-white font-mono text-sm border border-white/20 px-2 py-1" th:text="${item.availableSizes}">S, M, L, XL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a th:href="@{/cart/add/{id}(id=${item.id})}"
+                   class="group relative flex items-center justify-center px-12 h-16 bg-white text-black text-sm font-black uppercase tracking-widest overflow-hidden hover:bg-primary hover:text-white transition-all cyber-border flex-1">
+                    <span class="relative z-10 flex items-center gap-3">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        Add to Cart
+                    </span>
+                </a>
+
+                <a href="/" class="group flex items-center justify-center px-12 h-16 bg-transparent border-2 border-white/20 text-white text-sm font-black uppercase tracking-widest hover:border-white transition-all">
+                    Back to Grid
+                </a>
+            </div>
+
+            <div class="mt-8 p-4 glass-panel border-l-2 border-primary">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary text-xl">verified_user</span>
+                    <p class="text-white/50 text-xs font-bold uppercase tracking-widest">Secure Gcash Transaction Encrypted</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+
+<!-- Footer (Simplified for details page) -->
+<footer class="bg-black border-t border-white/10 py-10 px-6 md:px-20 mt-auto">
+<div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-white/20 text-[10px] font-bold uppercase tracking-[0.2em]">© 2024 VIGILANT // ICT_STREETWEAR_SYSTEM.</p>
+<p class="text-white/20 text-[10px] font-mono uppercase">V.09.42_BUILD</p>
+</div>
+</footer>
+</div>
+</div>
+</body>
+</html>

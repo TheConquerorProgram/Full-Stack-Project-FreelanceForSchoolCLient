@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VIGILANT // TRANSMISSION_COMPLETE</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'cyber-red': '#ec5b13',
+            'cyber-black': '#050505',
+          },
+          fontFamily: {
+            'display': ['Orbitron', 'sans-serif'],
+            'mono': ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #050505;
+      color: #ffffff;
+      background-image:
+        linear-gradient(rgba(236, 91, 19, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(236, 91, 19, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .neon-glow {
+      text-shadow: 0 0 10px rgba(236, 91, 19, 0.8), 0 0 20px rgba(236, 91, 19, 0.4);
+    }
+
+    .success-check {
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      opacity: 0;
+      transform: scale(0.5);
+    }
+
+    @keyframes popIn {
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .scanline {
+      width: 100%;
+      height: 100px;
+      z-index: 0;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(236, 91, 19, 0.1) 50%, rgba(0, 0, 0, 0) 100%);
+      opacity: 0.3;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      animation: scanline 6s linear infinite;
+    }
+
+    @keyframes scanline {
+      0% { top: -100px; }
+      100% { top: 100%; }
+    }
+  </style>
+</head>
+<body class="min-h-screen font-display flex flex-col items-center justify-center relative selection:bg-cyber-red selection:text-black">
+<div class="scanline"></div>
+
+<div class="relative z-10 text-center px-6 max-w-2xl">
+    <!-- Success Icon -->
+    <div class="success-check mb-8 flex justify-center">
+        <div class="w-32 h-32 rounded-full border-4 border-cyber-red flex items-center justify-center shadow-[0_0_50px_rgba(236,91,19,0.4)] bg-cyber-black">
+            <span class="material-symbols-outlined text-cyber-red !text-7xl">check</span>
+        </div>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-4 neon-glow">
+        Transmission <span class="text-cyber-red">Complete</span>
+    </h1>
+
+    <p class="text-white/60 font-mono text-sm md:text-base mb-12 leading-relaxed">
+        Your order has been successfully encrypted and logged in the Vigilant mainframe.
+        <br>
+        <span class="text-cyber-red/80">Dispatch protocols have been initiated.</span>
+    </p>
+
+    <!-- Data Readout (Decorative) -->
+    <div class="bg-black/40 border border-white/10 p-6 mb-12 text-left font-mono text-xs text-gray-500 inline-block w-full max-w-md">
+        <div class="flex justify-between mb-2">
+            <span>STATUS:</span>
+            <span class="text-cyber-red uppercase font-bold">Confirmed</span>
+        </div>
+        <div class="flex justify-between mb-2">
+            <span>ENCRYPTION:</span>
+            <span class="text-white">AES-256</span>
+        </div>
+        <div class="flex justify-between">
+            <span>TIMESTAMP:</span>
+            <span class="text-white" id="timestamp">LOADING...</span>
+        </div>
+    </div>
+
+    <!-- CTA Button -->
+    <a href="/" class="group relative inline-flex items-center justify-center px-12 py-4 bg-cyber-red text-black font-black uppercase tracking-widest text-sm hover:bg-white transition-all duration-300 clip-path-button">
+        <span class="mr-2">Return to Grid</span>
+        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+    </a>
+
+    <div class="mt-12 opacity-30">
+        <p class="text-[9px] font-mono uppercase tracking-widest">VIGILANT_CORP // SYSTEM_ID: V-8842</p>
+    </div>
+</div>
+
+<script>
+    // Simple script to show current time
+    document.getElementById('timestamp').innerText = new Date().toISOString();
+</script>
+
+</body>
+</html>

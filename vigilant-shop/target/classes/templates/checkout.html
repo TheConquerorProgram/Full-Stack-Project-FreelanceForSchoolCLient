@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VIGILANT // CHECKOUT_PROTOCOL</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'cyber-red': '#ec5b13',
+            'cyber-black': '#050505',
+            'cyber-gray': '#1a1a1a',
+          },
+          fontFamily: {
+            'display': ['Orbitron', 'sans-serif'],
+            'mono': ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #050505;
+      color: #ffffff;
+      background-image:
+        linear-gradient(rgba(236, 91, 19, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(236, 91, 19, 0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    .neon-glow {
+      text-shadow: 0 0 10px rgba(236, 91, 19, 0.8), 0 0 20px rgba(236, 91, 19, 0.4);
+    }
+
+    .glass-panel {
+      background: rgba(10, 10, 10, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(236, 91, 19, 0.3);
+      position: relative;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    }
+
+    .terminal-input {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      transition: all 0.3s ease;
+    }
+
+    .terminal-input:focus {
+      border-color: #ec5b13;
+      box-shadow: 0 0 15px rgba(236, 91, 19, 0.3);
+      outline: none;
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .cyber-btn {
+      background: #ec5b13;
+      color: #000;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 2px;
+      transition: all 0.3s;
+      clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+    }
+
+    .cyber-btn:hover {
+      background: #fff;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .scanline {
+      width: 100%;
+      height: 100px;
+      z-index: 0;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(236, 91, 19, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+      opacity: 0.3;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      animation: scanline 10s linear infinite;
+    }
+
+    @keyframes scanline {
+      0% { top: -100px; }
+      100% { top: 100%; }
+    }
+  </style>
+</head>
+<body class="min-h-screen font-mono relative selection:bg-cyber-red selection:text-black">
+<div class="scanline"></div>
+
+<div class="max-w-4xl mx-auto px-4 py-12 lg:py-20 relative z-10">
+
+    <!-- Header -->
+    <header class="mb-12 text-center">
+        <div class="inline-flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-cyber-red animate-pulse">lock</span>
+            <h1 class="text-3xl md:text-5xl font-display font-black uppercase tracking-tighter text-white">
+                CHECKOUT_<span class="text-cyber-red neon-glow">PROTOCOL</span>
+            </h1>
+        </div>
+        <p class="text-cyber-red/60 text-xs font-mono uppercase tracking-widest">
+            SECURE_CONNECTION_ESTABLISHED // ENCRYPTION: AES-256
+        </p>
+    </header>
+
+    <!-- Main Form -->
+    <form action="/process-order" method="post" class="glass-panel p-8 md:p-12 cyber-border">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <!-- Name Input -->
+            <div>
+                <label class="block text-cyber-red text-[10px] font-bold uppercase tracking-widest mb-2">
+                    > Operative Designation
+                </label>
+                <input type="text" name="customerName" required
+                       class="w-full terminal-input p-4 text-sm uppercase tracking-wider"
+                       placeholder="ENTER_FULL_NAME">
+            </div>
+
+            <!-- Address Input -->
+            <div>
+                <label class="block text-cyber-red text-[10px] font-bold uppercase tracking-widest mb-2">
+                    > Drop Zone Coordinates
+                </label>
+                <input type="text" name="address" required
+                       class="w-full terminal-input p-4 text-sm uppercase tracking-wider"
+                       placeholder="ENTER_FULL_ADDRESS">
+            </div>
+        </div>
+
+        <!-- GCash Section -->
+        <div class="mb-12 relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-cyber-red to-orange-600 rounded blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+            <div class="relative bg-black/80 border border-white/10 p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="material-symbols-outlined text-cyber-red">payments</span>
+                    <label class="block text-white text-sm font-bold uppercase tracking-widest">
+                        G-CASH GATEWAY
+                    </label>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-grow">
+                        <input type="text" name="gcashRef" required
+                               placeholder="REFERENCE_NO (e.g. 1234-5678-9012)"
+                               class="w-full terminal-input p-4 text-sm font-mono tracking-widest text-cyber-red placeholder:text-white/20">
+                    </div>
+                    <div class="flex items-center justify-center bg-cyber-red/10 border border-cyber-red/30 px-4 md:px-6">
+                        <div class="text-center">
+                            <p class="text-[10px] text-white/50 uppercase mb-1">Send To</p>
+                            <p class="text-cyber-red font-mono font-bold text-lg">0912-345-6789</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-white/30 text-[10px] mt-3 font-mono uppercase">
+                    * Input transaction ID above to verify payment transfer.
+                </p>
+            </div>
+        </div>
+
+        <!-- Total Summary & Submit -->
+        <div class="border-t border-white/10 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-6">
+
+                <div class="w-full md:w-2/3">
+                    <p class="text-white/40 text-xs uppercase mb-2 font-mono">FINAL_ACCUMULATION</p>
+                    <div class="text-5xl md:text-6xl font-display font-black text-white neon-glow leading-none" th:text="'₱' + ${grandTotal}">
+                        ₱0.00
+                    </div>
+                    <p class="text-cyber-red/60 text-[10px] mt-2 uppercase tracking-widest font-mono">
+                        Includes VAT & Secure Handling
+                    </p>
+                </div>
+
+                <button type="submit" class="w-full md:w-auto cyber-btn py-5 px-12 text-sm flex items-center justify-center gap-3 group">
+                    <span>EXECUTE_ORDER</span>
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Security Footer -->
+        <div class="mt-8 flex items-center justify-center gap-2 opacity-40">
+            <div class="w-1 h-1 bg-cyber-red rounded-full"></div>
+            <p class="text-[9px] uppercase text-center font-mono">SECURE_SSL_TUNNEL // VERIFIED</p>
+            <div class="w-1 h-1 bg-cyber-red rounded-full"></div>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

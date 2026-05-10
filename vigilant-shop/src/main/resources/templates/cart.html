@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VIGILANT // CART_STATION</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'cyber-red': '#ec5b13',
+            'cyber-black': '#050505',
+            'cyber-gray': '#1a1a1a',
+          },
+          fontFamily: {
+            'display': ['Orbitron', 'sans-serif'],
+            'mono': ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+<style data-purpose="cyberpunk-effects">
+    body {
+      background-color: #050505;
+      color: #ffffff;
+      background-image:
+        linear-gradient(rgba(236, 91, 19, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(236, 91, 19, 0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    .neon-glow {
+      text-shadow: 0 0 10px rgba(236, 91, 19, 0.8), 0 0 20px rgba(236, 91, 19, 0.4);
+    }
+
+    .glass-panel {
+      background: rgba(15, 15, 15, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(236, 91, 19, 0.3);
+      position: relative;
+      clip-path: polygon(0 0, 95% 0, 100% 15%, 100% 100%, 5% 100%, 0 85%);
+    }
+
+    .glass-panel::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent 98%, rgba(236, 91, 19, 0.5) 100%);
+      pointer-events: none;
+    }
+
+    .scanline {
+      width: 100%;
+      height: 100px;
+      z-index: 10;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(236, 91, 19, 0.1) 50%, rgba(0, 0, 0, 0) 100%);
+      opacity: 0.1;
+      position: absolute;
+      bottom: 100%;
+      animation: scanline 6s linear infinite;
+    }
+
+    @keyframes scanline {
+      0% { bottom: 100%; }
+      100% { bottom: -100%; }
+    }
+
+    .glitch-hover:hover {
+      animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    .terminal-header {
+      border-bottom: 2px solid #ec5b13;
+      box-shadow: 0 4px 10px -2px rgba(236, 91, 19, 0.5);
+    }
+  </style>
+</head>
+<body class="min-h-screen font-mono">
+<!-- BEGIN: MainHeader -->
+<header class="terminal-header sticky top-0 z-50 bg-cyber-black/90 backdrop-blur-md p-4 lg:px-12 border-b border-cyber-red/30" data-purpose="site-header">
+<div class="max-w-7xl mx-auto flex justify-between items-center">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 border-2 border-cyber-red flex items-center justify-center rotate-45 bg-cyber-red/10">
+<span class="rotate-[-45deg] font-display font-black text-cyber-red">V</span>
+</div>
+<h1 class="font-display text-3xl font-black tracking-tighter text-white neon-glow">
+          VIGILANT<span class="text-cyber-red">.sys</span>
+</h1>
+</div>
+<nav class="hidden md:flex gap-8 text-sm uppercase font-display tracking-widest text-gray-400">
+<a class="hover:text-cyber-red transition-colors" href="/">[ STORE ]</a>
+<a class="hover:text-cyber-red transition-colors" href="#">[ ARCHIVE ]</a>
+<a class="hover:text-cyber-red transition-colors" href="#">[ UPLINK ]</a>
+</nav>
+<div class="text-cyber-red font-mono text-xs hidden sm:block">
+        STATUS: AUTHENTICATED // SESSION_ID: 8492-X
+      </div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="max-w-7xl mx-auto px-4 py-12 lg:py-20" data-purpose="cart-container">
+<!-- Title Section -->
+<div class="mb-12 relative">
+<div class="absolute -left-4 top-0 w-1 h-full bg-cyber-red shadow-[0_0_15px_#ec5b13]"></div>
+<h2 class="font-display text-5xl md:text-7xl font-black uppercase tracking-tighter text-white/90">
+        YOUR <span class="text-cyber-red neon-glow">CART</span>
+</h2>
+<p class="text-cyber-red/60 text-xs mt-2 font-mono tracking-widest">
+        LOCAL_STORAGE >> INDEXING_ITEMS... 100% COMPLETE
+      </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<!-- BEGIN: CartItemsList -->
+<section class="lg:col-span-2 space-y-6" data-purpose="cart-items">
+<!-- Empty Cart Logic -->
+<div class="glass-panel p-12 text-center border-dashed border-cyber-red/20" th:if="${cart == null or #lists.isEmpty(cart)}">
+<div class="mb-4 inline-block p-4 border border-cyber-red/40 rounded-full animate-pulse">
+<svg class="w-12 h-12 text-cyber-red" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path></svg>
+</div>
+<h3 class="font-display text-xl text-white mb-2 tracking-widest">CART_EMPTY</h3>
+<p class="text-gray-500 font-mono text-sm uppercase">NO_ITEMS_DETECTED // SYSTEM_IDLE</p>
+<a class="mt-8 inline-block border border-cyber-red px-8 py-3 text-cyber-red font-display text-sm hover:bg-cyber-red hover:text-black transition-all" href="/">
+            RETURN_TO_MARKETPLACE
+          </a>
+</div>
+<!-- Cart Item Loop -->
+<article class="glass-panel p-6 flex flex-col md:flex-row gap-6 group" th:each="item, itemStat : ${cart}">
+<!-- Product Image with Glitch Effect -->
+<div class="relative w-full md:w-48 h-48 bg-cyber-gray overflow-hidden border border-cyber-red/20">
+<div class="scanline"></div>
+<img alt="Product Image" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 group-hover:scale-110" th:src="${item.clothItem.imageUrl}"/>
+<div class="absolute bottom-2 left-2 bg-cyber-black/80 px-2 py-1 text-[10px] text-cyber-red border border-cyber-red/30">
+              UID: 0x<span th:text="${item.clothItem.id}">7A42</span>
+</div>
+</div>
+<!-- Product Details -->
+<div class="flex-grow flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-display text-2xl font-bold text-white tracking-tight uppercase" th:text="${item.clothItem.name}">NEURAL_LINK_v2</h3>
+<span class="text-cyber-red font-mono text-xl neon-glow" th:text="'₱' + ${item.clothItem.price}">$299.00</span>
+</div>
+<p class="text-gray-500 text-sm mt-2 font-mono leading-relaxed" th:text="${item.clothItem.category}">High-frequency neural interface for accelerated data synchronization.</p>
+<div class="mt-4 flex gap-4 text-[10px] text-cyber-red/60 uppercase">
+<span>MODEL: PROTOTYPE</span>
+<span>ORIGIN: SECTOR_7</span>
+</div>
+</div>
+<!-- Controls -->
+<div class="mt-6 flex items-center justify-between border-t border-cyber-red/10 pt-4">
+<div class="flex items-center gap-4 bg-black/40 border border-cyber-red/30 p-1">
+<button class="w-8 h-8 flex items-center justify-center hover:bg-cyber-red hover:text-black transition-colors">-</button>
+<input class="w-10 bg-transparent border-none text-center focus:ring-0 text-white font-mono" th:value="${item.quantity}" type="text" value="01"/>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-cyber-red hover:text-black transition-colors">+</button>
+</div>
+<a th:href="@{/cart/remove/{index}(index=${itemStat.index})}" class="text-gray-500 hover:text-cyber-red font-mono text-xs uppercase tracking-tighter flex items-center gap-2 transition-colors">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                PURGE_ITEM
+              </a>
+</div>
+</div>
+</article>
+</section>
+<!-- END: CartItemsList -->
+<!-- BEGIN: OrderSummary -->
+<aside class="relative" data-purpose="order-summary">
+<div class="glass-panel p-8 sticky top-32 border-cyber-red/40 bg-cyber-red/5">
+<div class="flex items-center gap-3 mb-8 border-b border-cyber-red/30 pb-4">
+<div class="w-2 h-2 bg-cyber-red animate-pulse"></div>
+<h3 class="font-display text-xl font-bold tracking-widest text-white uppercase">DATA_READOUT</h3>
+</div>
+<div class="space-y-6 font-mono text-sm">
+<div class="flex justify-between text-gray-400">
+<span>SUBTOTAL //</span>
+<span class="text-white" th:text="'₱' + ${grandTotal}">$598.00</span>
+</div>
+<div class="flex justify-between text-gray-400">
+<span>TRANS_FEE //</span>
+<span class="text-white">FREE</span>
+</div>
+<div class="flex justify-between text-gray-400">
+<span>ENCRYPTION //</span>
+<span class="text-cyber-red">SECURE</span>
+</div>
+<div class="border-t border-cyber-red/30 pt-6 mt-6">
+<div class="flex justify-between items-end">
+<div class="text-[10px] text-cyber-red uppercase mb-1">FINAL_ESTIMATE</div>
+<div class="text-3xl font-display font-black text-white neon-glow" th:text="'₱' + ${grandTotal}">$610.40</div>
+</div>
+</div>
+<!-- Promo Code Input -->
+<div class="mt-8">
+<label class="block text-[10px] text-cyber-red/60 uppercase mb-2">ACCESS_KEY</label>
+<div class="flex">
+<input class="bg-black/50 border border-cyber-red/30 text-white font-mono text-sm w-full focus:ring-cyber-red focus:border-cyber-red px-4 py-2 uppercase placeholder:text-gray-700" placeholder="####-####" type="text"/>
+<button class="bg-cyber-red text-black px-4 font-bold hover:bg-white transition-colors">APPLY</button>
+</div>
+</div>
+<!-- Primary CTA -->
+<a th:if="${cart != null and not #lists.isEmpty(cart)}" href="/checkout" class="w-full mt-10 bg-cyber-red py-4 px-6 text-black font-display font-black text-lg uppercase tracking-tighter hover:bg-white hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-all transform active:scale-95 glitch-hover block text-center">
+              INITIALIZE_CHECKOUT_SEQUENCE
+            </a>
+<div class="mt-4 flex items-center justify-center gap-2 opacity-40">
+<div class="w-1 h-1 bg-cyber-red rounded-full"></div>
+<p class="text-[10px] uppercase text-center">SECURE_CHANNEL_ACTIVE</p>
+<div class="w-1 h-1 bg-cyber-red rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Terminal Decoration -->
+<div class="mt-6 text-[9px] font-mono text-gray-600 space-y-1 px-4 leading-tight opacity-50">
+<p>> CHECKING_INTEGRITY... OK</p>
+<p>> ESTABLISHING_HANDSHAKE... OK</p>
+<p>> ENCRYPTING_PII_DATA... OK</p>
+</div>
+</aside>
+<!-- END: OrderSummary -->
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: Footer -->
+<footer class="mt-20 border-t border-cyber-red/20 py-12 px-4 bg-black/80" data-purpose="site-footer">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="font-display font-black text-xl text-cyber-red/40 tracking-tighter">VIGILANT_CORP // 20XX</div>
+<div class="flex gap-8 font-mono text-[10px] text-gray-500 uppercase">
+<a class="hover:text-cyber-red transition-colors" href="#">PRIVACY_PROTOCOL</a>
+<a class="hover:text-cyber-red transition-colors" href="#">TERMS_OF_SERVICE</a>
+<a class="hover:text-cyber-red transition-colors" href="#">SYSTEM_STATUS</a>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 border border-gray-800 flex items-center justify-center hover:border-cyber-red group transition-colors cursor-pointer">
+<div class="w-1 h-4 bg-gray-800 group-hover:bg-cyber-red"></div>
+</div>
+<div class="w-8 h-8 border border-gray-800 flex items-center justify-center hover:border-cyber-red group transition-colors cursor-pointer">
+<div class="w-4 h-1 bg-gray-800 group-hover:bg-cyber-red"></div>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+</body>
+</html>

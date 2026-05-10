@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html class="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VIGILANT // VISUAL_ARCHIVE</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'cyber-red': '#ec5b13',
+            'cyber-black': '#050505',
+            'cyber-gray': '#1a1a1a',
+          },
+          fontFamily: {
+            'display': ['Orbitron', 'sans-serif'],
+            'mono': ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #050505;
+      color: #ffffff;
+      background-image:
+        linear-gradient(rgba(236, 91, 19, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(236, 91, 19, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .neon-glow {
+      text-shadow: 0 0 10px rgba(236, 91, 19, 0.6), 0 0 20px rgba(236, 91, 19, 0.3);
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      border-color: #ec5b13;
+      z-index: 10;
+      box-shadow: 0 0 20px rgba(236, 91, 19, 0.3);
+    }
+
+    .gallery-item img {
+      transition: transform 0.5s ease, filter 0.5s ease;
+      filter: grayscale(100%) contrast(1.2);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+      filter: grayscale(0%) contrast(1);
+    }
+
+    .scanline {
+      width: 100%;
+      height: 100px;
+      z-index: 0;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(236, 91, 19, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+      opacity: 0.3;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      animation: scanline 10s linear infinite;
+    }
+
+    @keyframes scanline {
+      0% { top: -100px; }
+      100% { top: 100%; }
+    }
+  </style>
+</head>
+<body class="min-h-screen font-display relative selection:bg-cyber-red selection:text-black">
+<div class="scanline"></div>
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-cyber-black/90 backdrop-blur-md border-b border-white/10 px-6 py-4">
+    <div class="max-w-[1600px] mx-auto flex justify-between items-center">
+        <a href="/" class="flex items-center gap-2 group">
+            <span class="material-symbols-outlined text-cyber-red group-hover:rotate-90 transition-transform">terminal</span>
+            <h2 class="text-white text-xl font-black italic uppercase tracking-tighter">VIG<span class="text-cyber-red">I</span>LANT</h2>
+        </a>
+        <a href="/" class="text-cyber-red/60 hover:text-cyber-red text-xs font-mono uppercase tracking-widest transition-colors">
+            [ EXIT_ARCHIVE ]
+        </a>
+    </div>
+</header>
+
+<main class="max-w-[1600px] mx-auto px-4 py-12 relative z-10">
+
+    <!-- Title Section -->
+    <div class="mb-12 text-center">
+        <div class="inline-block px-3 py-1 border border-cyber-red/30 text-cyber-red text-[10px] font-mono uppercase tracking-[0.3em] mb-4">
+            Accessing: /Visual_Memory_Bank
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2">
+            Visual <span class="text-cyber-red neon-glow">Archive</span>
+        </h1>
+        <p class="text-white/40 font-mono text-xs md:text-sm max-w-2xl mx-auto">
+            Decrypted imagery from the Caloocan Sector. 22 Units recovered.
+        </p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 auto-rows-[200px]">
+
+        <!-- Item 1 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/625374230_906473091895037_7625258172391117506_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeH7lSorR5GYQzURDAOrzx_Wf9uOjXELg8l_246NcQuDyQ_vL907v3X3HIZN9EHT0wle9k30RJcKlAbT0-s1Mkpq&_nc_ohc=QevwYJrGRgUQ7kNvwH8-yjP&_nc_oc=AdnbHkTT0V2xonUZoJnwW7QF0xR4OkIvgS-xkPrpMrNhqSsI66j0RQXj-LtK3V8u6n8&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=nvDcp9gWr0ydm3tTij8CpA&_nc_ss=8&oh=00_AfxhbKbz0wudyDlg8E_22Bp7sDQv4njOT_OAdGqoN68-eA&oe=69B9D813" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 2 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/524752517_759021369973544_4383751808772962352_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGqrJ-M31CsHskZHgVq_btLDZTPlYT9Lx8NlM-VhP0vH_FfRWgeBMUIXuo5awVfcGHw9GS_upUnRmQ2dPYDSKWN&_nc_ohc=7m1vXh-rAZMQ7kNvwGVb1bo&_nc_oc=AdkkJ7SR2mHqc2eOiWjkK0Yn_ItMvlbwp2UMWBYnrtGmhvj1zDr5wj0eZd1OTXmdVb8&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=qc9rpSLRLCbZN5XKuO947w&_nc_ss=8&oh=00_Afxna0_MRR3BwemdUsfDX64Hu1b32id4izNkiZp-oTXxlw&oe=69B9D0C0" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 3 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/506493416_725783139964034_3409820127312267857_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHsN4umCLIq-KMfD9KHjQW1iPPA5WuKb8uI88Dla4pvyxiipq43QnCsw76QydZbMYp5iXOHJpd-ufijnmZX5RDh&_nc_ohc=qXn19EW3QGoQ7kNvwHE38pU&_nc_oc=AdmENnvZwqSgCjeKfoiyBtRrdZZi-0j86uO41-N3sUK2DR8ehJNkLq2wdM3_OIiypM4&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=8n94zRy0Nwv4Txt9O-P61g&_nc_ss=8&oh=00_AfxpR5vEslLRyyksMSoyqUI5siG3501TjuEygGj0ps1j2g&oe=69B9DEA3" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 4 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/500037569_707338898475125_6685503821464101345_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFCjvrE4qggFEsnhSlb5MmGVP57hCftHTVU_nuEJ-0dNQQg6nbkbwFIMVjTFFOKuaH88yk0VM4ZG9qda8K94eeQ&_nc_ohc=1e_6y18jA9oQ7kNvwH3avza&_nc_oc=AdkaJ1fJfC3Jd9CDYN534iOxL1Od6IxXfLomjOyFg0qruGhivKD9G11U4F3aViXJOHY&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=NZ61DNn6Gt1iaUSPxGNZ2g&_nc_ss=8&oh=00_AfxjPlLwYdGKvv753DpvbS6OaP3ld-uGJi1_2ZtANE0i3w&oe=69B9E77B" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 5 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/625322478_905896861952660_5730880510919435132_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeG1UwSOY57NfIWGH3Wjup0LGXEubMiHrPUZcS5syIes9UMdYbRJIRUJjPlU0N6r56sEge3nth66CwVqG3ixAxi2&_nc_ohc=MfQhkiq6Qv8Q7kNvwGoNv9H&_nc_oc=Adl1teyijX7CbVfQ9Edr2dNsBYiCh-UafxgCz4PxlIkeCX8Ixds4NB_NdFvtEFdBRLE&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=LGOIoZeBn64JmH9qg0asug&_nc_ss=8&oh=00_Afx01beWRcj_-Wx7CpseFGZqyMBxG2Zu6_kxIKrLAtM8qw&oe=69B9F20A" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 6 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/500115651_709398258269189_6099555616819031925_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFCMo2g4B_C3ZiF49vF6_Q8rzy8HUdmENGvPLwdR2YQ0Z0c7U7h6ysxnh87W6zFNt6z5lw6v5a5LME6A6RtUceE&_nc_ohc=3omntLGG9soQ7kNvwGOspqm&_nc_oc=Adld6VLG0I4fHl_oTG-JD-2Z0Kn4s9JVdNMcGiEeEjqZwkKXVdDDBoCXu3eom_0caM8&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=hfdK_J3FKkV6FBjc3qD2nQ&_nc_ss=8&oh=00_AfzI7YVA9w8F7RLCqAHMhOEm-_H7ul6PbzKfDZUKmtDn8Q&oe=69BA052E" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 7 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/480194025_637100652165617_7679761989535065464_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeEfKFYiIH8YoWWN757BssMTvhzbwPWorI2-HNvA9aisjWRylMsl88WdrrwfiqcrKx1lAu1btr0lx-HZc9xkJP5a&_nc_ohc=dcQUj7_-8b8Q7kNvwF2TODB&_nc_oc=Adk2BRKmg242nizwYqjOzPaSyKQSt2qWG8LpgsK32TLmyKiq16yIs6xJ3bB4axEqH3M&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=nv0ddwMJwNzVnxz6YkjKRg&_nc_ss=8&oh=00_Afwu1_p1UBLilbq0pbNwIL1cmwMdUn7Sf2rUzibhZgNUeg&oe=69B9D09B" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 8 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-4.fna.fbcdn.net/v/t39.30808-6/480194571_636810938861255_8215382772618112089_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeEde7FSrQvcSK86aQVgH2dI9rW94y6pnFr2tb3jLqmcWvwmsiOFGp8STKHms6FjQLGAWedaO_Ns15Yn92zQbHIq&_nc_ohc=2CMKwJ8U7S4Q7kNvwHoFlwF&_nc_oc=AdnuHx0qah3fP_L1NNiK2TepBxjohqXoDNUYe8Bpl35tsaiSgqzXbnK2lHRLgL5uxvM&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&_nc_gid=EgOganjN5vAGGQUQuTieYg&_nc_ss=8&oh=00_Afxkp1Wo8RE-WA5D1RBEWILEkm4M4q_QT3V71YtuK7dnRg&oe=69B9D884" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 9 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/479542132_636463892229293_8435739320741737812_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHOJL1HfSiNACatfucF2SXTiV-5Rcn4bVGJX7lFyfhtUYQ2XbgMqdJKzvOcgt-QvzFblsH1vugWZs58uy3-98-X&_nc_ohc=0flpyTbPPgwQ7kNvwF1XBZ0&_nc_oc=AdmbFyWC_zUQYrCuHsddxEYOk3vopE9O9hlnCN2EeCxyEwZeFSbeqhuVNz9F9Pr6-x4&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&_nc_gid=r9xC1LqlX0oU-bOP3LE7IQ&_nc_ss=8&oh=00_AfyUmZW9EhlUkcmt5o1871L7qikf-8xkjN17XnqiLPOBBg&oe=69BA0156" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 10 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/472137718_604461835429499_1250664223480918707_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGwMyY1skfKikgplKSII1DglRIgwo-5BsmVEiDCj7kGyfSRNv8EswmhBJ172YojFCsmNzbBxFcremsT9My1TtO1&_nc_ohc=eAaPMIyS9bUQ7kNvwHPR5eS&_nc_oc=Adk6Q2vPewjzah6g1fo05lQlCrbRqvY7GrYshSOdsdcxnI6xb6D5JEWUhvzYNHdxPPg&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=SIQ6ZZyz-pJCh3sU326wcA&_nc_ss=8&oh=00_AfxpxbAg5qmO-ab2B2bQstRznYcJPmo6udnbSXlKkmIc1g&oe=69B9E6E7" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 11 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/476559633_633370369205312_5338531491479591655_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHPTVlwuofSSFJXdNgwbP7aDU0Tq2shI4gNTROrayEjiPbdYr1buOYRPgbAVRw1xYXHsvLn7jlrdRzLFR4vVGva&_nc_ohc=3Vrlf6h9VqoQ7kNvwGqEs9i&_nc_oc=AdnKKb2DVY68wm4ntkXA43ORCNX9Sax-q905owPMCLZJGXV6DkZcOmBJ1qbI2J1hCFc&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=csASQ_jUeFyV0XeB38gBLA&_nc_ss=8&oh=00_AfwMKGGT2kwPM00vU_xrteohSwxFrKmofJPTPVOLdn9lUQ&oe=69B9D1DD" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 12 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/477787128_636214745587541_850933147312768607_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeEdT-YXGB-YKt8126q5gTEVksB9DIOwJQ-SwH0Mg7AlDzwfEdvhlgYkzQzoVRGN-Yibbn8IM4oNpa0l26eEky8S&_nc_ohc=xxtQ8y8NZSMQ7kNvwFD28jZ&_nc_oc=AdlrpaYOQ1F6t8tqPc0WLj9wfv8izfdgpczXZRO8SsfAaYGIltqdveGSfSq_GDTtP4s&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=-s87NUQBUBG_cv5zZULT7g&_nc_ss=8&oh=00_AfxKcUYctkr6h-FLo_AvTxVdzAKK5efmkWuTJ9bya51AfQ&oe=69B9D0C2" class="w-full h-full object-cover">
+        </div>
+
+                <!-- Item 13 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/476256817_630632782812404_6788188150908606428_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGjdsuZsBBAPX5SNPqsDVLzXtbGNct9rK5e1sY1y32srlcYGpbIJ-H8RGhnzi-nTpT1JU8ERyRZSAOtrYSQfP2T&_nc_ohc=PwjL6rEGXcMQ7kNvwGwjJ5I&_nc_oc=Adk6tQVxZl-j1o8mcCNWUUFnDCE9yr1F6Zs5TFVXzDtb2TUkd39BDbaPkZ-XosZfLjo&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=9csWKn0Pj-jEPnlJ8uVWxg&_nc_ss=8&oh=00_AfwN9zghifA5lTErdI4eRMoythzmS05vFAHM1gdV9uoi6g&oe=69B9E499" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 14 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/475849557_628743376334678_7880641037278314295_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHSzDscX_AqbwEurB2eZykgVLxu13taaltUvG7Xe1pqW_qlgze46iql6gvMbdCZmymsdAo0aR3XJ670tDQ7G3Ya&_nc_ohc=GtdbFNYpupgQ7kNvwGZvz3a&_nc_oc=Adn3nwf7MSRuvAtcmqOWaE3E90LhZPZOhdqko0e4icENlCoO-VpB7tazj4ARu-ZrdLA&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=GKxyB83ubKHZgkMXTnOBbQ&_nc_ss=8&oh=00_AfxZRrfNdUnqbz_Z2zhYqnYSHCSMjRfvz6dWPEimYwPV9Q&oe=69BA038D" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 15 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/475772846_628527143022968_3444976490159678688_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGS22HbluaqxVh2KKg_4D-f1ti-y_vAdYfW2L7L-8B1h7Vfobp8s1LGj2k8gKLbZTDnub4R70goSbvBoAfVQatt&_nc_ohc=l2Te2wf9UrsQ7kNvwEOsEGB&_nc_oc=AdlrgIvmZHa0sX4a56gAKeYOD03Me9JmsU7299DXJOqmCqV0eHtxXWiyAG5tABxT3dY&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=PcH5Jw4cWRv2vqksOJofSg&_nc_ss=8&oh=00_AfxOZTfbiO6YfPnJEGjA86H2ItNKJZn-iAPNO6tOllixHw&oe=69B9E0B7" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 16 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/473291961_614391921103157_6845786639827574067_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGZ9xqI9gXqX_3MQlgR7mCGztjvGb-v_zHO2O8Zv6__MX0gafL7-bZkiVIFmJZZSKT2L0y2MDvBvkhXbHOvVTSn&_nc_ohc=AN6eWR1tNkIQ7kNvwE8Lknt&_nc_oc=AdnChOe0LzzuxAY4LBjogFZJKZ1Tygw6Ks0zxPiEV5x_B4VjUDq_0v6GJzUS46BcBpk&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=zhuwhLEF1jnot0S96e-c5g&_nc_ss=8&oh=00_AfwWgbczrZ38tKlllGYX9oLdVDcBkZhrgibX2eOMxVjTYQ&oe=69B9E580" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 17 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/471667161_604467905428892_7915906812990221194_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=b895b5&_nc_eui2=AeGdcYn6-rM1K-pNrNhXptIvJ7Q4qPUq24ontDio9Srbir4aRTepuqh9fQk-TI9bWF7wBhDAVn2uBHjW9VFRHwz0&_nc_ohc=Fre1ZI51aS4Q7kNvwHUCq3_&_nc_oc=Adl3kU9Wljhw6Uk6a86I_mNhzp9UXwTztzVQ4y4-Bbp8P3X2hI1ZiOZNxK_28RIYbBY&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=KpKfkuDXyy5iTAZ_fDVrVQ&_nc_ss=8&oh=00_AfxTHPhrbxiCulI7KPMWgLPVIRyxpkPcddcGwLQvW7jLvQ&oe=69B9F5FF" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 18 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/472695961_1029563795561217_7852203274482679327_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHa_a8VVsMaCNRsgfLhlqwa9Rk56sodovr1GTnqyh2i-uDyPuK_r8ChG6FLDpS3UuZJYmBVtGM-nFyTNsAM7PaH&_nc_ohc=nOqabs1A92MQ7kNvwHfXtTC&_nc_oc=Adksw7865TS_Frr2YS3ctjQNZgFU3-rRvjTdPukJi6k5Qv4CwnCeI7UxbyEY5R3VqPo&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=hz63weyVo1mBfDmPOKw-Iw&_nc_ss=8&oh=00_AfxXGr1YnxY0qeLUnOPKcXowHyj9y57yFIlfIVr7nFb5ow&oe=69B9DD8C" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 19 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/472907422_612404711301878_4504996755887278066_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGb1pkpDP8El8JUOfhVSS6a5I4lb80uY-nkjiVvzS5j6T72MbfDr5mT9mDt9pru5nXklxkGkqw2l-d6UGP4Fjwz&_nc_ohc=qXCBzvQzxQkQ7kNvwEsb8ST&_nc_oc=Adn-KW7FyyFqtYwr82_BqdHjX0iA3oXGUlxJ6IXQ5E6sZu7ImbfHFEip8QvVG8A6QdE&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=Vm8kgAJ_lyB2EbsXDWxTQg&_nc_ss=8&oh=00_AfwET6bXblZ-aJ_WIoYCkSN2mkMSbeU85B-G5kjCw_dQCg&oe=69B9E8C1" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 20 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/514410551_742021601673521_5274681157509914864_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=101&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGKW_1IPnEOuPJfIK6mkot0vJPTdRk4LKW8k9N1GTgspWyQ0lK0-BzON3h7PIk1hUYMOUf1q4EUKcxaMF5nzffn&_nc_ohc=09bYT3PK-mQQ7kNvwHIH8mQ&_nc_oc=Adl7Ch8QbazHz5Y63t4CnDMq0DCxEz_kRBPgLWwjpTzN6DRi5HrK4GBGYMvQ-_Z1tz4&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=y4h1YC6wDaTqkOBqRQwbvQ&_nc_ss=8&oh=00_Afy0YTxB5hZ5z7J-07kR3qX2qJTpJNHwk-1ls1fc4sstxQ&oe=69B9F96A" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 21 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/542481820_785213864020961_1412637845128119450_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeG04wP3JjXtWIuspZTZCgMN2AbCuJas95XYBsK4lqz3lUuIo7-J775JZcKW8OipSjkCpPHCWhMpiPtWk-QTTgRx&_nc_ohc=9QgM4Z7rUsIQ7kNvwEu51rR&_nc_oc=AdkODC2-U0wO7KTVYK9yQjxVMuoDiBZo_6_RthqUmhoGcflCVYEHjoJmUND0a81pweU&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=h_wGmmWVyWkw-CILilFhBw&_nc_ss=8&oh=00_AfxIZDR1T0dxBcxIID-MOWob1IRSt6i97a0XOdcWvq7X9w&oe=69B9DF49" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Item 22 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t39.30808-6/506484331_725783146630700_3665387657803501122_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeE3Y_f4oi27o77Mw-hpU_zX4ia24syijiPiJrbizKKOIznnfBhaTKGHy2DZ-Rt8_pTaIB7bLZT6Fa6ZYCrr9g_Z&_nc_ohc=EQHcwTvBs50Q7kNvwH0ebTW&_nc_oc=Admxlr5R7V_NN7Q2Lv0BfHDrWyMAyc5NZVguBMKSElHkxUGb7TJE8G4eYQjuN-enRiw&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&_nc_gid=dA166XJ7oy9nhvUA0dD9-Q&_nc_ss=8&oh=00_AfxDmO6XfJjODEbOhi-KCgKe9-fj6T2KoSN7YC1Gi3iA4Q&oe=69B9CF4E" class="w-full h-full object-cover">
+        </div>
+        <!-- Item 23 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/482009182_653126603896355_7382912949856090210_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeFF1j_iJm__HYqHchSEtqZa2Ar9lByflgnYCv2UHJ-WCb1BP5hHbMQiMsUS9ax_SnWCS4wqyuGV_RAM0-ptrH46&_nc_ohc=qMI9BgsCuHUQ7kNvwGOnfDG&_nc_oc=Adn8dyUFYG722TrWwpYVRiFZD1xApJCQEFaRgnhL8ztGijtjBBAS0Sg8WW5Xu9PgAl4&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=AiLfyy8cpItb8-t0QIUhGw&_nc_ss=8&oh=00_AfwSeRYQXMNjBRhZcwnCkGLvF9kh5Jzan4ZcPWP8XMiJvA&oe=69B9ED00" class="w-full h-full object-cover">
+        </div>
+        <!-- Item 24 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-6.fna.fbcdn.net/v/t39.30808-6/477788477_636455485563467_6616270740680720054_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeERxxqVWi54109KP7h4yTVecuz7SxTUYmxy7PtLFNRibMM8Y6BL_ajDLkJSmKhgM4bwdix94Yt_4JudgMFjlHok&_nc_ohc=8edNUBFroQwQ7kNvwEbj12j&_nc_oc=AdkI1ioFu1zBH5ILvqp4S7zmZINIZ7cy6OYchIBHbhXdjttDYFBBn9rWARBFFswnl2U&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&_nc_gid=PiiIliMYulXWu6faZvoKzQ&_nc_ss=8&oh=00_AfyZG3NTzJ0vdejAOECpWBRud6Q0CMKRnUSgmcHdnXuWJg&oe=69B9EBB4" class="w-full h-full object-cover">
+        </div>
+        <!-- Item 25 -->
+        <div class="gallery-item aspect-square bg-cyber-gray">
+            <img src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/480049069_636804628861886_4915705083303727086_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHRvmi2L04eaUnTJCqToqldcxLSdnO-WFJzEtJ2c75YUokNFbIAf96gRz0n6pZIpqHOMRsZL1xaJn06nO0gJhcr&_nc_ohc=dTDaPXY2nxIQ7kNvwEq8Msu&_nc_oc=AdmYetf7arh9ZajvDlKqSXQR_VQVVBTl9h_cWoWonGE7ws-SS_TgcsU9nO73S76mhg0&_nc_zt=23&_nc_ht=scontent.fmnl17-1.fna&_nc_gid=rUBkuPnz5sCEIrE-EE1Nug&_nc_ss=8&oh=00_AfxIyF9uaJvrL0cWiYKuBMjNrrtS26lHlK3j0CFnkl6MLA&oe=69B9DCC6" class="w-full h-full object-cover">
+        </div>
+
+    </div> <!-- End of Gallery Grid -->
+
+</main>
+
+<!-- Footer -->
+<footer class="mt-20 border-t border-white/10 py-10 px-4 bg-black/80">
+    <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="font-display font-black text-xl text-cyber-red/40 tracking-tighter">VIGILANT_CORP // 20XX</div>
+        <div class="flex gap-8 font-mono text-[10px] text-gray-500 uppercase">
+            <a href="/" class="hover:text-cyber-red transition-colors">SYSTEM_ROOT</a>
+            <a href="#" class="hover:text-cyber-red transition-colors">PRIVACY_PROTOCOL</a>
+        </div>
+        <div class="text-[9px] text-gray-600 font-mono">
+            STATUS: SECURE
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
